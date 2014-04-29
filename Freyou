@@ -1,0 +1,163 @@
+#
+# Program: StarWars.py
+# Author: LA Freyou (FREE U)
+# Date modified: 4/29/2014
+# This program encode/Decodes, alphabetic an/or Numeric data
+# This version uses the Phone keypad layout (can be modified)
+# Contains two defs, Keyboard display, and instruction display
+# Main consists of while(), if-elif, sets, random generation, and
+#  
+import random
+#================ convertCharToDigits() =========================
+
+def convertCharToDigits(ans, indx):
+    # This provides the conversion from phone keyboard to digits
+    # This could be changed to represent order of letters
+
+    if ans[indx].upper() == 'A' or ans[indx].upper() == 'B' or ans[indx].upper() == 'C':
+        return '2'
+    elif ans[indx].upper() == 'D' or ans[indx].upper() == 'E' or ans[indx].upper() == 'F':
+        return '3'
+    elif ans[indx].upper() == 'G' or ans[indx].upper() == 'H' or ans[indx].upper() == 'I':
+        return '4'
+    elif ans[indx].upper() == 'J' or ans[indx].upper() == 'K' or ans[indx].upper() == 'L':
+        return '5'
+    elif ans[indx].upper() == 'M' or ans[indx].upper() == 'N' or ans[indx].upper() == 'O':
+        return '6'
+    elif ans[indx].upper() == 'P' or ans[indx].upper() == 'Q' or ans[indx].upper() == 'R' or ans[indx].upper() == 'S':
+        return '7'
+    elif ans[indx].upper() == 'T' or ans[indx].upper() == 'U' or ans[indx].upper() == 'V':
+        return '8'
+    elif ans[indx].upper() == 'W' or ans[indx].upper() == 'X' or ans[indx].upper() == 'Y' or ans[indx].upper() == 'Z':
+        return '9'
+    else:
+        return ans[indx]
+
+#================ convertDigitsToChar() =========================
+
+def convertDigitsToChar(ans, indx):
+    # This provides the conversion from digits to random char
+    # This could be changed to represent order of letters
+
+    # Sets
+    twos = ['A','B','C']
+    threes = ['D','E','F']
+    fours = ['G','H','I']
+    fives = ['J','K','L']
+    sixes = ['M','N','O']
+    sevens = ['P','Q','R','S']
+    eights = ['T','U','V']
+    nines = ['W','X','Y','Z']
+
+    if ans[indx].upper() == '2':
+        ri = random.randrange(1,3,1)    # gets random char from sets
+        return twos[ri]
+    elif ans[indx].upper() == '3':
+        ri = random.randrange(1,3,1)
+        return threes[ri]
+    elif ans[indx].upper() == '4':
+        ri = random.randrange(1,3,1)
+        return fours[ri]
+    elif ans[indx].upper() == '5':
+        ri = random.randrange(1,3,1)
+        return fives[ri]
+    elif ans[indx].upper() == '6':
+        ri = random.randrange(1,3,1)
+        return sixes[ri]
+    elif ans[indx].upper() == '7':
+        ri = random.randrange(1,4,1)
+        return sevens[ri]
+    elif ans[indx].upper() == '8':
+        ri = random.randrange(1,3,1)
+        return eights[ri]
+    elif ans[indx].upper() == '9':
+        ri =random.randrange(1,4,1)
+        return nines[ri]
+    else:
+        return ans[indx]   # any digit not included in sets
+    
+#================ Display Screen =========================
+def screenDisplay():
+    # This provides the conversion from phone keyboard to digits
+    # This could be changed to represent order of letters
+    print '\n'
+    print '+---+---+---+'
+    print '| A | B | C | 2'   #2
+    print '+---+---+---+'
+    print '| D | E | F | 3'   #3
+    print '+---+---+---+'
+    print '| G | H | I | 4'   #4
+    print '+---+---+---+'
+    print '| J | K | L | 5'   #5
+    print '+---+---+---+'
+    print '| M | N | O | 6'   #6
+    print '+---+---+---+---+'
+    print '| P | Q | R | S | 7'   #7
+    print '+---+---+---+---+'
+    print '| T | U | V |   | 8'     #8
+    print '+---+---+---+---+'
+    print '| W | X | Y | Z | 9'   #9
+    print '+---+---+---+---+'
+    print '\n'
+
+def instructions():
+    print '\n_______________________________________'
+    print '      Convert Words To Digits, enter 1'
+    print 'Convert Numbers To Charactors, enter 2'
+    print '       Display Phone Keyboard, enter 3'
+    print '                 Instructions, enter 4'
+    print '_______________________________________'
+    print '     >> To exit, enter 0 >>'
+    print '_______________________________________\n'
+
+
+#================ MAIN PROGRAM =================
+print '========================================'
+print '=          Coder/Decoder               ='
+print '========================================\n'
+
+command = raw_input("Command (4 - commands, 0 - Exit): ")
+while command != '0':
+    if command == '1':
+        # ------------------- convertCharToDigits -----------------------
+        ans = raw_input("Enter Name(Alpha): ")
+        print '========================================'
+        print ans,': '
+        x = 0
+        while x < len(ans):   # do for length of Name
+            iDigits = convertCharToDigits(ans, x)    # convert alpha to digits
+            x = x + 1   # next char
+            print iDigits,
+        print '\n========================================\n'
+        command = '5'        # get new command
+
+    elif command == '2':
+        #------------------- convertDigitsToChar -----------------------
+        ans = raw_input("Enter Name(Digit): ")
+        print '========================================'
+        print ans,': ',
+        x = 0
+        while x < len(ans):  # do for length of digits
+            iChar = convertDigitsToChar(ans, x)    # convert char to digits
+            x = x + 1   # next char
+            print iChar,
+        print '\n========================================\n'
+
+        command = '5'       # get new command 
+
+    elif command == '3':
+        #------------------ Keyboard Display ---------------------------
+        screenDisplay()     # Display a phone keyboard
+        command = '5'       # get new command
+    elif command == '4':
+        #------------------ Instructions -------------------------------
+        instructions()
+        command = '5'       # get new command
+    else:
+        command = raw_input("Command (4 - commands, 0 - Exit): ")
+
+# Not used for windows
+#raw_input('Press Enter to exit')
+
+
+
